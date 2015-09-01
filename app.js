@@ -1,11 +1,13 @@
 var nodemailer = require('nodemailer');
 var express = require("express");
 var app = express();
-
+var path = require('path');
+app.use(express.static(path.join(__dirname, '/public')));
 /* serves main page */
 app.get("/", function(req, res) {
-    res.sendfile('public/index.html')
+    res.sendfile(__dirname + '/index.html')
 });
+
 
 app.post("/user/sendmail", function(req, res, next) {
     var transporter = nodemailer.createTransport({
@@ -19,7 +21,7 @@ app.post("/user/sendmail", function(req, res, next) {
         from: req.query.email, // sender address
         to: 'vipul.sharma@paytm.com,goelgaurish@gmail.com,jaiaset@gmail.com', // list of receivers
         text: req.query.message, // plaintext body
-        html: '<b>Name : '+ req.query.name +'</b><br><b>PHONE : </b>' + req.query.phone // html body
+        html: '<b>Name : '+ req.query.name +'</b><br><b>PHONE : </b>' + req.query.phone  + '<b> Email:</b>' + req.query.email + ' Message: ' + req.query.message// html body
     };
     transporter.sendMail(mailOptions, function(error, info){
         if(error){
@@ -35,7 +37,7 @@ app.post("/user/sendmail", function(req, res, next) {
 
 /* serves all the static files */
 app.get(/^(.+)$/, function(req, res){
-    res.sendfile( __dirname + req.params[0]);
+    res.sendfile(__dirname + req.params[0]);
 });
 
 var port = process.env.PORT || 5000;
