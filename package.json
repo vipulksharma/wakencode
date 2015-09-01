@@ -1,0 +1,8 @@
+{
+  "name": "wakencode",
+  "version": "0.0.1",
+  "dependencies": {
+    "express": "4.2.x",
+    "nodemailer" : "*"
+  }
+}
