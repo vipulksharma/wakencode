@@ -19,7 +19,7 @@ app.post("/user/sendmail", function(req, res, next) {
     });
     var mailOptions = {
         from: req.query.email, // sender address
-        to: 'vipul.sharma@paytm.com,goelgaurish@gmail.com,jaiaset@gmail.com', // list of receivers
+        to: 'panditsfire@gmail.com,iamvivek@gmail.com', // list of receivers
         text: req.query.message, // plaintext body
         html: '<b>Name : '+ req.query.name +'</b><br><b>PHONE : </b>' + req.query.phone  + '<b> Email:</b>' + req.query.email + ' Message: ' + req.query.message// html body
     };
@@ -40,7 +40,7 @@ app.get(/^(.+)$/, function(req, res){
     res.sendfile(__dirname + req.params[0]);
 });
 
-var port = process.env.PORT || 5000;
+var port = process.env.PORT || 3000;
 app.listen(port, function() {
     console.log("Listening on " + port);
 });
